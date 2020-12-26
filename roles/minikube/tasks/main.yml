@@ -12,6 +12,9 @@
   template:
     src: templates/kubernetes-repo.repo.j2
     dest: /etc/yum.repos.d/kubernetes-repo.repo
+
+- name: Swap off
+  command: swapoff -a
   
 - name: Install docker-ce and kubectl
   dnf:
@@ -36,3 +39,6 @@
 
 - name: Install minikube
   raw: install minikube /usr/local/bin/
+
+- name: Start minikube
+  raw: minikube start
